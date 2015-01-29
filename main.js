@@ -1,4 +1,5 @@
 var AM = new AssetManager();
+var count = 0;
 
 function Animation(spriteSheet, frameWidth, frameHeight, frameDuration, frames, loop, reverse) {
     this.spriteSheet = spriteSheet;
@@ -57,11 +58,32 @@ function Puma(game, spritesheet) {
 
 Puma.prototype.draw = function () {
 //    console.log("drawing");
-    this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
+
 
     if(this.x >(1080 + 512)){
+        count++;
         this.x = (-512) ;
     }
+
+    if(count === 0){
+        var background = new Image();
+        background.src = "./img/background2.jpg";
+        this.ctx.drawImage(background,0,0);
+        this.y = 475
+    }else if(count===1){
+        var background = new Image();
+        background.src = "./img/background.jpg";
+        this.y = 450;
+        this.ctx.drawImage(background,0,0);
+    }else {
+        var background = new Image();
+        background.src = "./img/background3.jpg";
+        this.y = 450;
+        this.ctx.drawImage(background,0,0);
+
+    }
+
+    this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
 }
 
 Puma.prototype.update = function() {
@@ -72,6 +94,7 @@ Puma.prototype.update = function() {
 
 AM.queueDownload("./img/puma.png");
 AM.queueDownload("./img/background.png");
+AM.queueDownload("./img/background2.png");
 
 
 AM.downloadAll(function () {
