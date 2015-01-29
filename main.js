@@ -93,8 +93,10 @@ Puma.prototype.update = function() {
 
 
 AM.queueDownload("./img/puma.png");
+AM.queueDownload("africa.mp3")
 AM.queueDownload("./img/background.png");
 AM.queueDownload("./img/background2.png");
+AM.queueDownload("./img/background3.png")
 
 
 AM.downloadAll(function () {
