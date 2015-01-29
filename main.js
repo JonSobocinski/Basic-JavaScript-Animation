@@ -47,7 +47,7 @@ Animation.prototype.isDone = function () {
     return (this.elapsedTime >= this.totalTime);
 }
 
-function MushroomDude(game, spritesheet) {
+function Puma(game, spritesheet) {
     this.animation = new Animation(spritesheet, 512, 256,.05, 8, true, false);
     this.x = 0;
     this.y = 450;
@@ -55,31 +55,31 @@ function MushroomDude(game, spritesheet) {
     this.ctx = game.ctx;
 }
 
-MushroomDude.prototype.draw = function () {
+Puma.prototype.draw = function () {
 //    console.log("drawing");
     this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
 }
 
-MushroomDude.prototype.update = function() {
+Puma.prototype.update = function() {
     this.x += 2;//Move function (left to right)
 }
 
 
 
-AM.queueDownload("./img/mushroomdude.png");
+AM.queueDownload("./img/puma.png");
 
 
 AM.downloadAll(function () {
     var canvas = document.getElementById("gameWorld");
     var ctx = canvas.getContext("2d");
 
-//    var img = AM.getAsset("./img/mushroomdude.png");
+//    var img = AM.getAsset("./img/puma.png");
 
     var gameEngine = new GameEngine();
     gameEngine.init(ctx);
     gameEngine.start();
 
-    gameEngine.addEntity(new MushroomDude(gameEngine, AM.getAsset("./img/mushroomdude.png")));
+    gameEngine.addEntity(new Puma(gameEngine, AM.getAsset("./img/puma.png")));
 
     console.log("All Done!");
 
