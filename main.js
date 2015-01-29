@@ -49,7 +49,7 @@ Animation.prototype.isDone = function () {
 
 function Puma(game, spritesheet) {
     this.animation = new Animation(spritesheet, 512, 256,.05, 8, true, false);
-    this.x = 0;
+    this.x = -512;
     this.y = 450;
     this.game = game;
     this.ctx = game.ctx;
@@ -58,15 +58,20 @@ function Puma(game, spritesheet) {
 Puma.prototype.draw = function () {
 //    console.log("drawing");
     this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
+
+    if(this.x >(1080 + 512)){
+        this.x = (-512) ;
+    }
 }
 
 Puma.prototype.update = function() {
-    this.x += 2;//Move function (left to right)
+    this.x += 15;//Move function (left to right)
 }
 
 
 
 AM.queueDownload("./img/puma.png");
+AM.queueDownload("./img/background.png");
 
 
 AM.downloadAll(function () {
