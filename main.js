@@ -1,6 +1,7 @@
 var AM = new AssetManager();
 var count = 0;
 
+
 function Animation(spriteSheet, frameWidth, frameHeight, frameDuration, frames, loop, reverse) {
     this.spriteSheet = spriteSheet;
     this.frameWidth = frameWidth;
@@ -61,8 +62,12 @@ Puma.prototype.draw = function () {
 
 
     if(this.x >(1080 + 512)){
-        count++;
         this.x = (-512) ;
+
+        if(count >2){
+            count =0;
+        }else
+            count++;
     }
 
     if(count === 0){
@@ -70,15 +75,15 @@ Puma.prototype.draw = function () {
         background.src = "./img/background2.jpg";
         this.ctx.drawImage(background,0,0);
         this.y = 475
-    }else if(count===1){
+    }else if(count ===1){
         var background = new Image();
         background.src = "./img/background.jpg";
         this.y = 450;
         this.ctx.drawImage(background,0,0);
-    }else {
+    }else if(count === 2){
         var background = new Image();
         background.src = "./img/background3.jpg";
-        this.y = 450;
+        this.y = 500;
         this.ctx.drawImage(background,0,0);
 
     }
@@ -102,9 +107,6 @@ AM.queueDownload("./img/background3.png")
 AM.downloadAll(function () {
     var canvas = document.getElementById("gameWorld");
     var ctx = canvas.getContext("2d");
-
-//    var img = AM.getAsset("./img/puma.png");
-
     var gameEngine = new GameEngine();
     gameEngine.init(ctx);
     gameEngine.start();
