@@ -64,7 +64,7 @@ Puma.prototype.draw = function () {
     if(this.x >(1080 + 512)){
         this.x = (-512) ;
 
-        if(count >2){
+        if(count >=2){
             count =0;
         }else
             count++;
@@ -85,7 +85,6 @@ Puma.prototype.draw = function () {
         background.src = "./img/background3.jpg";
         this.y = 500;
         this.ctx.drawImage(background,0,0);
-
     }
 
     this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
